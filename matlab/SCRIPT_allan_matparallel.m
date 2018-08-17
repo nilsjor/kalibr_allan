@@ -7,11 +7,11 @@ addpath('functions/allan_v3')
 
 % Our bag information
 %mat_path = '../data/imu_mtig700.mat';
-mat_path = '../data/imu_tango.mat';
+mat_path = '../data/bno055.mat';
 
 % IMU information (todo: move this to the yaml file)
 %update_rate = 400;
-update_rate = 100;
+update_rate = 80;
 
 
 %% Data processing
@@ -102,7 +102,3 @@ fprintf('saving to: %s\n',filename);
 %save(['../data/',filename])
 save(['../data/',filename],'update_rate','ts_imua','ts_imuw','tau','taumax','results_ax','results_ay','results_az','results_wx','results_wy','results_wz')
 fprintf('done saving!\n');
-
-
-
-
