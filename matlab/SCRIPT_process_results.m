@@ -34,16 +34,21 @@ fprintf('plotting gyroscope.\n')
                                     titlestr,'gyroscope','rad/s',...
                                     'rad/s^1sqrt(Hz)','rad/s^2sqrt(Hz)');
 
-                                
 
-%% Print out for easy copying
+
+%% Print to yaml-file
+fid = fopen('../data/bno055.yaml','w');
 % Accelerometer
-fprintf('accelerometer_noise_density = %.8f\n',sigma_a);
-fprintf('accelerometer_random_walk   = %.8f\n',sigma_ba);
-% Gryoscope
-fprintf('gyroscope_noise_density     = %.8f\n',sigma_g);
-fprintf('gyroscope_random_walk       = %.8f\n',sigma_ga);
+fprintf(fid,'accelerometer_noise_density: %e\n',max(sigma_a));
+fprintf(fid,'accelerometer_random_walk:   %e\n',max(sigma_ba));
+% Gyroscope
+fprintf(fid,'gyroscope_noise_density:     %e\n',max(sigma_g));
+fprintf(fid,'gyroscope_random_walk:       %e\n',max(sigma_ga));
+% Other info
+fprintf(fid,'rostopic:                    /imu0\n');
+fprintf(fid,'update_rate:                 %e\n',update_rate);
 
+fclose(fid);
 
 
 %% Save to file
